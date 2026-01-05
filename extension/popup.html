@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reel Intelligence Scanner</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 350px;
+      min-height: 400px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #fff;
+      padding: 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #334155;
+    }
+
+    .header h1 {
+      font-size: 20px;
+      margin-bottom: 5px;
+      background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header p {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 10px;
+    }
+
+    .input-group {
+      margin-bottom: 12px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 5px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 8px 12px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 13px;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #0ea5e9;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9, #0284c7);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+    }
+
+    .btn-secondary {
+      background: #334155;
+      color: #cbd5e1;
+    }
+
+    .btn-secondary:hover {
+      background: #475569;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .status {
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .status-success {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid #10b981;
+      color: #10b981;
+    }
+
+    .status-error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid #ef4444;
+      color: #ef4444;
+    }
+
+    .status-info {
+      background: rgba(14, 165, 233, 0.1);
+      border: 1px solid #0ea5e9;
+      color: #0ea5e9;
+    }
+
+    .toggle-switch {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      background: #1e293b;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .toggle-switch label {
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+
+    .switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #334155;
+      transition: 0.3s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #0ea5e9;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .stat-card {
+      background: #1e293b;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid #334155;
+    }
+
+    .stat-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0ea5e9;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .link {
+      color: #0ea5e9;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🎬 Reel Intelligence</h1>
+    <p>Instagram Reel Scanner</p>
+  </div>
+
+  <!-- Login Section -->
+  <div id="loginSection">
+    <div class="section">
+      <div class="section-title">Login to Your Account</div>
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="your@email.com">
+      </div>
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••••">
+      </div>
+      <div class="input-group">
+        <label>API URL (Optional)</label>
+        <input type="text" id="apiUrl" placeholder="http://localhost:5000/api" value="http://localhost:5000/api">
+      </div>
+      <button class="btn btn-primary" id="loginBtn">Login</button>
+      <div style="text-align: center; margin-top: 10px;">
+        <a href="https://reel-intelligence.vercel.app/register" target="_blank" class="link">
+          Create Account
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Section (After Login) -->
+  <div id="mainSection" class="hidden">
+    <div id="statusMessage"></div>
+
+    <div class="section">
+      <div class="section-title">Scanner Settings</div>
+      
+      <div class="toggle-switch">
+        <label>Auto-Scan Enabled</label>
+        <label class="switch">
+          <input type="checkbox" id="autoScanToggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="toggle-switch">
+        <label>Show Overlay</label>
+        <label class="switch">
+          <input type="checkbox" id="overlayToggle" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="section">
+      <button class="btn btn-primary" id="scanCurrentBtn">
+        📊 Scan Current Reel
+      </button>
+      <button class="btn btn-secondary" id="openDashboardBtn">
+        📈 Open Dashboard
+      </button>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-value" id="scannedCount">0</div>
+        <div class="stat-label">Reels Scanned</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="scansRemaining">100</div>
+        <div class="stat-label">Scans Left</div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 15px;">
+      <button class="btn btn-secondary" id="logoutBtn" style="width: auto; padding: 8px 20px;">
+        Logout
+      </button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
