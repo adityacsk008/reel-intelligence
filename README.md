@@ -8,6 +8,31 @@ A professional reel-level intelligence platform built for creators, agencies & b
 ![Node](https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen)
 ![React](https://img.shields.io/badge/react-18.2.0-blue)
 
+[![Deploy Backend on Railway](https://railway.app/button.svg)](https://railway.app/template/reel-intelligence)
+[![Deploy Frontend with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/adityacsk008/reel-intelligence)
+
+---
+
+## 🚀 Quick Deploy (5 Minutes!)
+
+### **Option 1: One-Click Deploy (Recommended)**
+
+1. **Backend (Railway):**
+   - Click: [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app)
+   - Sign up with GitHub
+   - Select this repo → `backend` folder
+   - Add MongoDB plugin
+   - Set environment variables (see below)
+   - Deploy! ✅
+
+2. **Frontend (Vercel):**
+   - Click: [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+   - Import this repo → `frontend` folder
+   - Add `REACT_APP_API_URL` environment variable
+   - Deploy! ✅
+
+**📖 Detailed Guide:** [QUICK_DEPLOY.md](./QUICK_DEPLOY.md)
+
 ---
 
 ## 🎯 Core Features
@@ -45,6 +70,7 @@ A professional reel-level intelligence platform built for creators, agencies & b
 - **Tailwind CSS** - Styling
 - **Recharts** - Data Visualization
 - **Axios** - API Communication
+- **Vite** - Build Tool
 
 ### Backend
 - **Node.js** - Runtime
@@ -57,6 +83,7 @@ A professional reel-level intelligence platform built for creators, agencies & b
 - **bcrypt** - Password Hashing
 - **dotenv** - Environment Variables
 - **cors** - Cross-Origin Resource Sharing
+- **helmet** - Security Headers
 
 ---
 
@@ -100,22 +127,26 @@ reel-intelligence/
 │   │   │   ├── Analytics/
 │   │   │   └── Admin/
 │   │   ├── context/
-│   │   │   └── AuthContext.js
+│   │   │   └── AuthContext.jsx
 │   │   ├── services/
 │   │   │   └── api.js
-│   │   ├── utils/
-│   │   │   └── helpers.js
-│   │   ├── App.js
-│   │   └── index.js
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
 │   ├── .env.example
 │   ├── package.json
+│   ├── vite.config.js
 │   └── tailwind.config.js
-└── README.md
+├── README.md
+├── QUICK_DEPLOY.md
+├── API_DOCS.md
+├── DEPLOYMENT.md
+└── LICENSE
 ```
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Local Development Setup
 
 ### Prerequisites
 - Node.js >= 16.0.0
@@ -146,6 +177,7 @@ PORT=5000
 MONGODB_URI=mongodb://localhost:27017/reel-intelligence
 JWT_SECRET=your_super_secret_jwt_key_change_this
 NODE_ENV=development
+CORS_ORIGIN=http://localhost:3000
 ```
 
 **Start Backend:**
@@ -174,7 +206,7 @@ REACT_APP_API_URL=http://localhost:5000/api
 
 **Start Frontend:**
 ```bash
-npm start
+npm run dev
 ```
 
 Frontend will run on `http://localhost:3000`
@@ -203,8 +235,10 @@ Password: Admin@123
 1. Login to your account
 2. Navigate to "Reel Scanner"
 3. Open Instagram in another tab (logged in)
-4. Use the overlay to select reels while scrolling
-5. View real-time analytics
+4. Copy reel details (ID, URL, view count)
+5. Add reels to scan list
+6. Click "Scan All Reels"
+7. View real-time analytics
 
 ### 2. Dashboard Analytics
 - View total views, averages, and growth metrics
@@ -220,10 +254,10 @@ Password: Admin@123
 
 ## 🛡️ Safety & Compliance
 
-✅ **User-Initiated Scanning**: All scans require user action
-✅ **No Credential Storage**: No Instagram passwords stored
-✅ **Rate Limited**: Prevents abuse
-✅ **No Automation**: No background scraping
+✅ **User-Initiated Scanning**: All scans require user action  
+✅ **No Credential Storage**: No Instagram passwords stored  
+✅ **Rate Limited**: Prevents abuse  
+✅ **No Automation**: No background scraping  
 ✅ **ToS Compliant**: Designed with platform guidelines in mind
 
 ⚠️ This is an analytics tool, NOT a bot or fake engagement service.
@@ -264,6 +298,8 @@ GET /api/admin/stats - Platform statistics
 PUT /api/admin/users/:id - Update user
 DELETE /api/admin/users/:id - Delete user
 ```
+
+**📖 Full API Documentation:** [API_DOCS.md](./API_DOCS.md)
 
 ---
 
@@ -326,6 +362,23 @@ pm2 start server.js --name reel-intelligence
 
 ---
 
+## 📦 Deployment
+
+### Quick Deploy (Recommended)
+- **Backend:** Railway (Free MongoDB included)
+- **Frontend:** Vercel (Free hosting)
+
+**📖 Step-by-Step Guide:** [QUICK_DEPLOY.md](./QUICK_DEPLOY.md)
+
+### Other Options
+- Traditional VPS (DigitalOcean, AWS)
+- Docker Compose
+- Heroku
+
+**📖 Detailed Deployment:** [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+---
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please follow these steps:
@@ -335,6 +388,8 @@ Contributions are welcome! Please follow these steps:
 3. Commit changes (`git commit -m 'Add AmazingFeature'`)
 4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+**📖 Contributing Guidelines:** [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ---
 
@@ -356,7 +411,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For issues and questions:
 - **GitHub Issues**: [Create an issue](https://github.com/adityacsk008/reel-intelligence/issues)
-- **Email**: support@reelintelligence.com
+- **Documentation**: Check [API_DOCS.md](./API_DOCS.md) and [QUICK_DEPLOY.md](./QUICK_DEPLOY.md)
 
 ---
 
@@ -371,6 +426,33 @@ For issues and questions:
 
 ---
 
+## 💰 Cost
+
+**Free Tier Deployment:**
+- Railway: 500 hours/month (sufficient for testing)
+- Vercel: Unlimited for personal projects
+- **Total: $0/month** 🎉
+
+---
+
 **Made with ❤️ for the creator economy**
 
-⭐ Star this repo if you find it useful!
+⭐ **Star this repo if you find it useful!**
+
+---
+
+## 📸 Screenshots
+
+### Dashboard
+![Dashboard](https://via.placeholder.com/800x400?text=Dashboard+Screenshot)
+
+### Reel Scanner
+![Reel Scanner](https://via.placeholder.com/800x400?text=Reel+Scanner+Screenshot)
+
+### Analytics
+![Analytics](https://via.placeholder.com/800x400?text=Analytics+Screenshot)
+
+---
+
+**🔗 Live Demo:** Coming Soon!  
+**📦 Repository:** https://github.com/adityacsk008/reel-intelligence
