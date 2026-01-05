@@ -1,0 +1,200 @@
+/* Reel Intelligence - Content Script Styles */
+
+#reel-intelligence-overlay {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999999;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 2px solid #334155;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-width: 280px;
+  backdrop-filter: blur(10px);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.ri-overlay-content {
+  color: #fff;
+}
+
+.ri-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #334155;
+}
+
+.ri-logo {
+  font-size: 24px;
+}
+
+.ri-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0ea5e9;
+}
+
+.ri-stats {
+  margin-bottom: 15px;
+}
+
+.ri-stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.ri-label {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.ri-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.ri-status {
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.ri-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ri-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.ri-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.ri-btn:active {
+  transform: translateY(0);
+}
+
+.ri-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.ri-btn-primary {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: #fff;
+}
+
+.ri-btn-primary:hover {
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+}
+
+.ri-btn-secondary {
+  background: #334155;
+  color: #cbd5e1;
+}
+
+.ri-btn-secondary:hover {
+  background: #475569;
+}
+
+.ri-btn-secondary.selected {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+}
+
+.ri-btn-icon {
+  font-size: 16px;
+}
+
+/* Notifications */
+.ri-notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  background: #1e293b;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000000;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0;
+  transition: all 0.3s ease-out;
+  border: 1px solid #334155;
+}
+
+.ri-notification.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.ri-notification-success {
+  border-color: #10b981;
+  background: linear-gradient(135deg, #1e293b, #064e3b);
+}
+
+.ri-notification-error {
+  border-color: #ef4444;
+  background: linear-gradient(135deg, #1e293b, #7f1d1d);
+}
+
+.ri-notification-info {
+  border-color: #0ea5e9;
+  background: linear-gradient(135deg, #1e293b, #0c4a6e);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #reel-intelligence-overlay {
+    top: 10px;
+    right: 10px;
+    min-width: 240px;
+    padding: 15px;
+  }
+  
+  .ri-title {
+    font-size: 14px;
+  }
+  
+  .ri-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
